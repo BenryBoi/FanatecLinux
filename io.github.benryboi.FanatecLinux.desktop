@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Fanatec For Linux
+Comment=Tuning GUI for Fanatec wheel bases using the hid-fanatecff driver
+Exec=Fanatec_FFB_Tuner_Presets.py
+Icon=io.github.benryboi.FanatecLinux
+Terminal=false
+Categories=Utility;HardwareSettings;
+Keywords=fanatec;simracing;steering;wheel;
+StartupWMClass=io.github.benryboi.FanatecLinux

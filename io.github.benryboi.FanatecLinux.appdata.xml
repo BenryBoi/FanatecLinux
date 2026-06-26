@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-id">
+    <id>io.github.benryboi.FanatecLinux</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0-or-later</project_license>
+    <name>Fanatec Linux</name>
+    <summary>A GTK4/Libadwaita configuration utility for Fanatec wheel bases</summary>
+    <description>
+        <p>
+            Fanatec Linux provides a clean graphical interface to safely adjust steering sensitivity, force feedback strength, damper effects, and pedal tuning variables exposed by the hid-fanatecff kernel module.
+        </p>
+    </description>
+    <launchable type="desktop-id">io.github.fanatec.FanatecLinux.desktop</launchable>
+    <url type="homepage">https://github.com/BenryBoi/FanatecLinux</url>
+    <provides>
+        <binary>Fanatec_FFB_Tuner_Presets.py</binary>
+    </provides>
+</component>
