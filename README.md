@@ -15,7 +15,7 @@ A modern, GNOME-aligned GTK4/Libadwaita graphical utility for adjusting Fanatec 
 
 This application requires the [hid-fanatecff](https://github.com/gotzl/hid-fanatecff) kernel driver to be installed and active on your system. Without it, your system will not expose the hardware tuning paths required by this interface.
 
-## Hardware Permissions (Required)
+## Hardware Permissions
 
 By default, Linux restricts writing to device configurations in the `/sys` directory to the root user. To allow this application to save settings seamlessly without needing `sudo` or `pkexec` prompts every single time, you must add a local `udev` hardware rule.
 
