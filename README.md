@@ -2,6 +2,8 @@
 
 A modern, GTK4/Libadwaita graphical utility for adjusting Fanatec wheel bases and hardware settings on Linux. This application hooks into the settings exposed by the `hid-fanatecff` kernel driver via `sysfs`.
 
+<img width="687" height="1248" alt="app_screenshot" src="https://github.com/user-attachments/assets/81c19707-0b56-4bc0-b38c-d56d7534dfd1" />
+
 
 ## Features
 
