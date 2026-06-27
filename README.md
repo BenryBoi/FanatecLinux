@@ -26,7 +26,4 @@ echo 'SUBSYSTEM=="ftec_tuning", ACTION=="add", TAG+="uaccess"
 SUBSYSTEM=="hid", DRIVERS=="fanatecff", ACTION=="add", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/99-fanatec-tuner.rules && sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
 
-*Lots of [Claude](https://claude.ai) and [Gemini](https://gemini.google.com) was used to create this. Please lmk if there are any glaringly obvious problems with this program.
-
-
 *Disclaimer: This software is provided as-is. I am not responsible for any damage to hardware or personal injury resulting from misconfigured settings. Use at your own risk.*
