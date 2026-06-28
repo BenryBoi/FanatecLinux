@@ -1,4 +1,4 @@
-# Fanatec  Linux
+# SimPower
 
 A modern, GTK4/Libadwaita graphical utility for adjusting Fanatec wheel bases and hardware settings on Linux. This application hooks into the settings exposed by the `hid-fanatecff` kernel driver via `sysfs`.
 
