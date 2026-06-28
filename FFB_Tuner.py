@@ -26,7 +26,7 @@ RUMBLE_GLOB  = "/sys/bus/hid/devices/*/rumble"
 # ---------------------------------------------------------------------------
 # Preset storage
 # ---------------------------------------------------------------------------
-CONFIG_DIR = pathlib.Path.home() / ".config" / "Fanatec-Config"
+CONFIG_DIR = pathlib.Path.home() / ".config" / "SimPower"
 
 # ---------------------------------------------------------------------------
 # Tab 1 — Wheel & FFB
@@ -494,7 +494,7 @@ class TunerWindow(Adw.ApplicationWindow):
         save_grp.set_title("Save Preset")
         save_grp.set_description(
             "Snapshots all current Wheel & FFB, Pedals, and Advanced values "
-            "into a named preset file in ~/.config/Fanatec-Config/."
+            "into a named preset file in ~/.config/SimPower/."
         )
         box.append(save_grp)
 
