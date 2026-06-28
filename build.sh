@@ -3,7 +3,6 @@ set -e
 
 echo "=== Step 1: Cleaning previous build artifacts ==="
 rm -rf AppDir
-rm -f Fanatec_For_Linux*.AppImage
 
 echo "=== Step 2: Creating the AppDir folder structure ==="
 mkdir -p AppDir/usr/bin
@@ -13,8 +12,8 @@ mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
 
 echo "=== Step 3: Copying project assets into the layout ==="
 # App execution script
-cp Fanatec_FFB_Tuner_Presets.py AppDir/usr/bin/
-chmod +x AppDir/usr/bin/Fanatec_FFB_Tuner_Presets.py
+cp FFB_Tuner.py AppDir/usr/bin/
+chmod +x AppDir/usr/bin/FFB_Tuner.py
 
 # App metadata files
 cp io.github.benryboi.FanatecLinux.desktop AppDir/
@@ -29,7 +28,7 @@ echo "=== Step 4: Creating the core AppRun launch script ==="
 cat << 'EOF' > AppDir/AppRun
 #!/bin/sh
 HERE="$(dirname "$(readlink -f "${0}")")"
-exec python3 "$HERE/usr/bin/Fanatec_FFB_Tuner_Presets.py" "$@"
+exec python3 "$HERE/usr/bin/FFB_Tuner.py" "$@"
 EOF
 chmod +x AppDir/AppRun
 
