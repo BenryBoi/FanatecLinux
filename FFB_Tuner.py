@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fanatec Linux — a GNOME-aligned GUI for adjusting Fanatec force-feedback
+SimPower — a GNOME-aligned GUI for adjusting Fanatec force-feedback
 settings exposed by the hid-fanatecff kernel driver via sysfs.
 """
 
@@ -167,7 +167,7 @@ def build_attr_rows(pref_group, attrs, widgets, write_cb, extra_rows_cb=None):
 class TunerWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.set_title("Fanatec Linux")
+        self.set_title("SimPower")
         self.set_default_size(700, 780)
 
         self.device_path = find_device_path()

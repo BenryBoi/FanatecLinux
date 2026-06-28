@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Fanatec For Linux
+Name=SimPower
 Comment=Tuning GUI for Fanatec wheel bases using the hid-fanatecff driver
 Exec=Fanatec_FFB_Tuner_Presets.py
 Icon=io.github.benryboi.FanatecLinux
