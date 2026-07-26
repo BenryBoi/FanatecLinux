@@ -24,8 +24,15 @@ By default, Linux restricts writing to device configurations in the `/sys` direc
 Open a terminal and run the following combined command:
 
 ```bash
-echo 'SUBSYSTEM=="ftec_tuning", ACTION=="add", TAG+="uaccess"
-SUBSYSTEM=="hid", DRIVERS=="fanatecff", ACTION=="add", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/99-fanatec-tuner.rules && sudo udevadm control --reload-rules && sudo udevadm trigger
+sudo tee /etc/udev/rules.d/99-fanatec-tuner.rules > /dev/null << 'EOF'
+ACTION!="add|change", GOTO="fanatec_tuner_end"
+
+SUBSYSTEM=="ftec_tuning", RUN+="/bin/sh -c 'find /sys%p -type f -exec chmod 666 {} +'"
+SUBSYSTEM=="hid", DRIVER=="fanatec", RUN+="/bin/sh -c 'chmod 666 /sys%p/rumble 2>/dev/null'"
+
+LABEL="fanatec_tuner_end"
+EOF
+sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
 
 
