@@ -23,6 +23,13 @@ from gi.repository import Gtk, Adw, GLib, Gio
 SYSFS_GLOB   = "/sys/class/ftec_tuning/*"
 RUMBLE_GLOB  = "/sys/bus/hid/devices/*/rumble"
 
+# Inside the Flatpak sandbox there is no way to elevate privileges: write
+# access to the sysfs attributes comes only from the host udev rules.
+IN_FLATPAK = os.path.exists("/.flatpak-info")
+FLATPAK_PERMISSION_HINT = (
+    "Install the udev rules on the host (see the README's Flatpak section), "
+    "then replug the wheel.")
+
 # ---------------------------------------------------------------------------
 # Preset storage
 # ---------------------------------------------------------------------------
@@ -694,6 +701,8 @@ class TunerWindow(Adw.ApplicationWindow):
             self.wheel_banner.set_revealed(True)
         elif not can_write(self.device_path):
             self.wheel_banner.set_title(
+                f"No write permission on sysfs. {FLATPAK_PERMISSION_HINT}"
+                if IN_FLATPAK else
                 "No write permission on sysfs. Writes will request root authorisation.")
             self.wheel_banner.set_revealed(True)
         else:
@@ -767,6 +776,9 @@ class TunerWindow(Adw.ApplicationWindow):
             return self._write_privileged(path, value)
 
     def _write_privileged(self, path, value):
+        if IN_FLATPAK:
+            self._err("Permission Denied", FLATPAK_PERMISSION_HINT)
+            return False
         cmd_str = f'echo {int(value)} > "{path}"'
         cmd = (["pkexec", "/bin/sh", "-c", cmd_str]
                if shutil.which("pkexec")
