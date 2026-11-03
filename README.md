@@ -35,5 +35,20 @@ EOF
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
 
+## Flatpak
+
+The Flatpak cannot request root authorisation (`pkexec`/`sudo`), so write access must come from udev rules installed on the host. Use either:
+
+- the rule from [Hardware Permissions](#hardware-permissions) above, or
+- the `fanatec.rules` shipped with hid-fanatecff, and add your user to the `games` group (`sudo usermod -aG games $USER`, then log out and back in).
+
+Then reload the rules and replug the wheel:
+
+```bash
+sudo udevadm control --reload-rules && sudo udevadm trigger
+```
+
+On NixOS, add the rules with `services.udev.packages` (or `services.udev.extraRules`) and the group with `users.users.<name>.extraGroups = [ "games" ];`.
+
 
 *Disclaimer: This software is provided as-is. I am not responsible for any damage to hardware or personal injury resulting from misconfigured settings. Use at your own risk.*

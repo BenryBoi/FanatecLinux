@@ -1,0 +1,35 @@
+app-id: io.github.benryboi.FanatecLinux
+runtime: org.gnome.Platform
+runtime-version: '51'
+sdk: org.gnome.Sdk
+command: FFB_Tuner.py
+
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  # The hid-fanatecff attributes (/sys/class/ftec_tuning/*,
+  # /sys/bus/hid/devices/*/rumble) are symlinks into /sys/devices, which is
+  # read-only by default. Write access is still gated by the host udev rules.
+  - --filesystem=/sys/devices
+  # Presets are shared with non-Flatpak installs
+  - --filesystem=xdg-config/SimPower:create
+
+modules:
+  - name: simpower
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 FFB_Tuner.py ${FLATPAK_DEST}/bin/FFB_Tuner.py
+      - install -Dm644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm644 ${FLATPAK_ID}.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+    sources:
+      - type: file
+        path: FFB_Tuner.py
+      - type: file
+        path: io.github.benryboi.FanatecLinux.desktop
+      - type: file
+        path: io.github.benryboi.FanatecLinux.appdata.xml
+      - type: file
+        path: io.github.benryboi.FanatecLinux.png
